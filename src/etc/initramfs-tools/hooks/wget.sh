@@ -7,10 +7,13 @@ esac
 
 # To find out what library are needed do
 # strace busybox wget https://badssl.com 2>&1 | grep open
-for library in "libnss_dns.*" "libnss_files.so.*" "libresolv.so.*" "ld-linux-*.so.*" "libc.so.*"
+for needed_lib in "libnss_dns*.so*" "libnss_files*.so*" "libresolv*.so*" "ld-linux*.so*" "libc-*.so" "libc.so.*"
 do
-	find /lib/ -name '$library' -type f
-	copy_exec "$library"
+	lib=$(find /lib/ -name "$needed_lib" -type f)
+	if [ ! -z $lib ]
+	then
+		copy_exec "$lib"
+	fi
 done
 
 copy_exec /etc/ssl/certs/ca-certificates.crt

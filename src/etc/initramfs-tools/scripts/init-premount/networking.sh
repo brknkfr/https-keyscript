@@ -41,9 +41,6 @@ done
 # working.
 if ! [ -s /etc/resolv.conf ]; then
     # Cloudflare
-    [ -z "$IPV4DNS0" ] && IPV4DNS0="1.1.1.1"
-    # Quad9
-    [ -z "$IPV4DNS1" ] && IPV4DNS1="9.9.9.9"
-    echo "nameserver $IPV4DNS0" > /etc/resolv.conf
-    echo "nameserver $IPV4DNS1" >> /etc/resolv.conf
+    [ -z "$IPV4DNS" ] && IPV4DNS="1.1.1.1"
+    echo "nameserver $IPV4DNS" > /etc/resolv.conf
 fi
