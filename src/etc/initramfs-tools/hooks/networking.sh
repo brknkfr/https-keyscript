@@ -40,9 +40,6 @@ lib_module()
 # sys-libs/glibc loads additional libraries reqired for domain name lookups dynamically,
 # they doesn't get picked up by initramfs installation scripts. Let's include them manually.
 # For more information, see https://wiki.gentoo.org/wiki/Custom_Initramfs#DNS
-lib_module /lib 'libc.so.*' 'libnss_dns.*'
-lib_module /lib 'libc.so.*' 'libnss_files.so.*'
-lib_module /lib 'libc.so.*' 'libresolv.so.*'
-lib_module /usr/lib 'libc.so.*' 'libnss_dns.*'
-lib_module /usr/lib 'libc.so.*' 'libnss_files.so.*'
-lib_module /usr/lib 'libc.so.*' 'libresolv.so.*'
+lib_module /lib/x86_64-linux-gnu 'libc.so.*' 'libnss_dns.*'
+lib_module /lib/x86_64-linux-gnu 'libc.so.*' 'libnss_files.so.*'
+lib_module /lib/x86_64-linux-gnu 'libc.so.*' 'libresolv.so.*'
