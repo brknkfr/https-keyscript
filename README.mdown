@@ -26,8 +26,8 @@ rm unencrypted_keyfile
 3. Install the keyscript and initramfs hooks.
 
 ```
-wget https://github.com/stupidpupil/https-keyscript/releases/download/v1.0.1/https-keyscript_1.0.1_all.deb
-sudo dpkg -i https-keyscript_1.0.1_all.deb
+wget https://github.com/stupidpupil/https-keyscript/releases/download/v1.0.1/https-keyscript_1.0.3_all.deb
+sudo dpkg -i https-keyscript_1.0.3_all.deb
 ```
 
 4. Add keyfile to LUKS slots.
@@ -54,6 +54,8 @@ The keyscript uses the [kernel keyring](http://man7.org/linux/man-pages/man7/key
 [netkeyscript](https://github.com/basak/netkeyscript) uses link-local IPv6 UDP packets with an unencrypted passphrase.
 
 [clevis](https://github.com/latchset/clevis#unlocker-dracut) provides a *dracut*-based unlocker for use with the [tang](https://github.com/latchset/tang) keyserver.
+
+[vaultlocker](https://github.com/openstack-charmers/vaultlocker) provides helpers for unlocking boot drives using keys stored in Hashicorp Vault.
 
 There are a number of variations on using *dropbear* or similar to allow remote, but not unattended, restarts with an encrypted boot.
 
