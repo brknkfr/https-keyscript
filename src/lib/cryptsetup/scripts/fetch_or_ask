@@ -141,7 +141,7 @@ https_try_fetch ()
 
   message "Fetching remote keyfile for $CRYPTTAB_NAME..."
 
-  encrypted_keyfile=$(wget -q -O - "$url")
+  encrypted_keyfile=$(curl -s "$url")
 
   if [ $? -eq 0 ]; then
     decrypted_keyfile=$(echo "$encrypted_keyfile" | openssl enc -base64 -aes-256-cbc -md sha256 -d -salt -pbkdf2 -k "$openssl_passphrase")
