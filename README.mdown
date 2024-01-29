@@ -38,7 +38,7 @@ rm unencrypted_keyfile
 
 5. Update the `/dev/someDevice` entry in `/etc/crypttab` with the option `keyscript=fetch_or_ask` and with a 'key file' field like `somepassphrase:https://example.org/encrypted_keyfile`. The file `/etc/crypttab` should finally look like this:
 ```
-someDevice_crypt		UUID=<UUID_OF_SOMEDEVICE>	somepassphrase:https://example.org/encrypted_keyfile		luks,keyscript=fetch_or_ask,tries=5,initramfs
+someDevice_crypt UUID=<UUID_OF_SOMEDEVICE> somepassphrase:https://example.org/encrypted_keyfile luks,keyscript=fetch_or_ask,tries=5,initramfs
 ```
 6. `sudo update-initramfs -u`
 
