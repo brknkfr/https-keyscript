@@ -6,6 +6,6 @@ Homepage: https://github.com/brknkfr/https-keyscript
 Architecture: all
 Priority: optional
 Section: admin
-Depends: cryptsetup (>= 2), busybox (>= 1.30), openssl (>= 1.1.1n ), curl (>= 7.74.0 )
+Depends: cryptsetup (>= 2), busybox | busybox-static (>= 1.30), openssl (>= 1.1.1n ), curl (>= 7.64.0 )
 Recommends: keyutils (>= 1.5)
 Installed-Size: 5
