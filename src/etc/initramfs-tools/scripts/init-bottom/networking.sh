@@ -16,7 +16,7 @@ esac
 . /scripts/functions
 
 # Bring all interfaces down or set variable IFACE to none
-IFDOWN=*
+IFDOWN="*"
 
 if [ "$BOOT" != nfs ] && [ "$IFDOWN" != none ]; then
     for IFACE in /sys/class/net/$IFDOWN; do

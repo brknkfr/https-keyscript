@@ -10,7 +10,7 @@ esac
 for needed_lib in "libnss_dns*.so*" "libnss_files*.so*" "libresolv*.so*" "ld-linux*.so*" "libc-*.so" "libc.so.*"
 do
 	lib=$(find /lib/ -name "$needed_lib" -type f)
-	if [ ! -z $lib ]
+	if [ -n "$lib" ]
 	then
 		copy_exec "$lib"
 	fi

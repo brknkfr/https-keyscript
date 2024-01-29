@@ -1,7 +1,5 @@
 # HTTPS Keyscript
 
-[![Build Status](https://travis-ci.org/stupidpupil/https-keyscript.svg?branch=master)](https://travis-ci.org/stupidpupil/https-keyscript)
-
 A keyscript and initramfs-tools helpers to allow a machine with a LUKS-encrypted boot drive to passwordlessly boot by fetching a remote key over HTTPS.
 
 It is intended to protect against information disclosure in the event of accidental loss or untargeted theft - the key can be removed from the webserver as soon as the loss is noticed. It's **not at all secure** if you're trying to protect yourself against someone deliberately trying to obtain your information.
@@ -26,8 +24,8 @@ rm unencrypted_keyfile
 3. Install the keyscript and initramfs hooks.
 
 ```
-curl https://github.com/brknkfr/https-keyscript/releases/download/v1.0.10/https-keyscript_1.0.10_all.deb
-sudo dpkg -i https-keyscript_1.0.10_all.deb
+curl https://github.com/brknkfr/https-keyscript/releases/download/v1.0.11/https-keyscript_1.0.11_all.deb
+sudo dpkg -i https-keyscript_1.0.11_all.deb
 ```
 
 4. Add keyfile to LUKS slots.
@@ -38,10 +36,13 @@ sudo cryptsetup luksAddKey /dev/someDevice unencrypted_keyfile
 rm unencrypted_keyfile
 ```
 
-5. Update the `/dev/someDevice` entry in `/etc/crypttab` with the option `keyscript=fetch_or_ask` and with a 'key file' field like `somepassphrase:https://example.org/encrypted_keyfile`. 
+5. Update the `/dev/someDevice` entry in `/etc/crypttab` with the option `keyscript=fetch_or_ask` and with a 'key file' field like `somepassphrase:https://example.org/encrypted_keyfile`. The file `/etc/crypttab` should finally look like this:
+```
+someDevice_crypt		UUID=<UUID_OF_SOMEDEVICE>	somepassphrase:https://example.org/encrypted_keyfile		luks,keyscript=fetch_or_ask,tries=5,initramfs
+```
 6. `sudo update-initramfs -u`
 
-(You might also need to add the `initramfs` option to the `crypttab` in step 5 due to _systemd_'s [lack of support for keyscripts](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=618862); see the [crypttab man page](http://manpages.ubuntu.com/manpages/cosmic/man5/crypttab.5.html).)
+(You might also need to add the `initramfs` option to the `crypttab` in step 5 due to _systemd_'s [lack of support for keyscripts](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=618862); see the [crypttab man page](https://manpages.debian.org/bookworm/cryptsetup/crypttab.5.en.html).)
 
 ## Caching
 
