@@ -37,10 +37,12 @@ while [ $seconds -le $connection_wait ]; do
     seconds=$(( seconds + 1))
 done
 
-# Configure a basic resolv.conf just to get domain name resolving 
+# Configure a basic resolv.conf just to get domain name resolving
 # working.
 if ! [ -s /etc/resolv.conf ]; then
-    # Cloudflare
-    [ -z "$IPV4DNS" ] && IPV4DNS="1.1.1.1"
-    echo "nameserver $IPV4DNS" > /etc/resolv.conf
+    # Use Cloudflare dns resolver if no dns resolver is supplied
+    if [ -z "$IPV4DNS0" ]; then
+        IPV4DNS0="1.1.1.1"
+    fi
+    echo "nameserver $IPV4DNS0" > /etc/resolv.conf
 fi
